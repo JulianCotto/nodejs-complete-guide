@@ -1,0 +1,101 @@
+Node.JS
+	- A JavaScript runtime
+	- JS is generally used in the browser to manipulate the DOM or HTML page
+	- JS is essentially a different version of JS that adds some additional features to the language
+		- Node.js adds the ability to run JS code anywhere on the system (outside of the Browser)
+		- Allows JS to function more like a normal programming language
+
+Node.js uses V8 JavaScript engine (built by Google & written in C++)
+	- Takes JS code & compiles it to machine code (like the browser does)
+	- Essentially acts as the browser to execute the JS code
+
+Install Node.js
+	- nodejs.org (or software center for internal)
+	- Download and install latest version
+	- Open cmd and enter `node -v` to return version
+		- C:\Users\P2159754>node -v
+		  v24.1.0
+	- For node console enter `node` (can be used as calculator)
+		- C:\Users\P2159754>node
+		  Welcome to Node.js v24.1.0.
+		  Type ".help" for more information.
+		  > 2+2
+		  4
+		- ctrl + c to exit
+
+Executing files
+	- `node ${filename}`
+
+JavaScript on the server
+    - Client is on the Browser and makes a request to the server
+    - Server executes code (DataBase, Authentication, Input Validation, Business Logic)
+        - Does something with the request
+        - Returns a response to the HTML Page
+    - All the heavy load and private items reside on the server alongside Node.js
+    - Node.js is not limited to the server
+        - Utility scripts & Build Tools
+
+Node.js' Role in Web Development
+    - Run Server
+        - Create Server & Listen to Incoming Requests
+    - Business Logic
+        - Handle requests, Validate Input, Connect to Database, ...
+    - Responses
+        - Return Responses (rendered HTML, JSON, ...)
+
+Node.js Alternatives
+    - Python, PHP, Ruby, ASP.NET, ...
+    - A huge advantage of Node.js is that it uses JavaScript
+        - Not required to learn multiple languages like PHP and Ruby alongside front-end languages
+
+Course Outline
+    - Getting Started.
+    - JS Refresher.
+    - Node.js Basics.
+    - Efficient Development.
+    - Using Express.js.
+    - Templating Engines.
+    - Model-View-Controller.
+    - Advanced Routes & Models.
+    - Node + SQL (MySQL).
+    - Using Sequelize.
+    - Node + NoSQL (MongoDB).
+    - Using Mongoose.
+    - Sessions & Cookies.
+    - Authentication.
+    - Sending E-Mails.
+    - Authentication Deep Dive.
+    - User Input Validation.
+    - Error Handling.
+    - File Uploads & Downloads.
+    - Pagination.
+    - Async Requests.
+    - Handling Payments.
+    - Rest API Basics.
+    - Advanced REST API Features.
+    - Using async-await.
+    - Websockets & Socket.io.
+    - GraphQL.
+    - Deployment.
+    - Beyond Web Servers.
+    - Roundup & Next Steps.
+
+How to get the most out of the course
+    - Watch the videos
+    - Code Along & Do Coding Exercises
+    - Use Course Resources
+        - https://github.com/PacktPublishing/Node.js-The-Complete-Guide
+
+Two ways of executing code in Node.js
+    - REPL (Executes in Node console after running `node` standalone command)
+        - Great Playground
+        - Executes while you write
+        - REPL breakdown
+            - Read: Read User Input
+            - Eval: Evaluate User Input
+            - Print: Print Output (result)
+            - Loop: Wait for New Input
+
+    - Executing Files (`node ${fileName}`)
+        - Useful for real apps
+        - Predictable sequence of events
