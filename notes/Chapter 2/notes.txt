@@ -1,0 +1,38 @@
+JavaScript Overview
+    - Weakly Typed
+        - No Explicit Type Declaration
+        - Data types can be switched dynamically
+    - Object-Oriented Language
+        - Data can be organized in logical objects
+        - Primitive and Reference Types
+    - Versatile Language
+        - Runs in the browser and directly on a PC/Server
+        - Can perform a broad variety of tasks
+
+JavaScript Variables & Functions
+    - Attempting to re-assign const variables produces:
+        TypeError: Assignment to constant variable.
+            at Object.<anonymous> (C:\Users\P2159754\WebstormProjects\nodejs-complete-guide\src\Chapter2\let-const.js:5:6)
+            at Module._compile (node:internal/modules/cjs/loader:1734:14)
+            at Object..js (node:internal/modules/cjs/loader:1899:10)
+            at Module.load (node:internal/modules/cjs/loader:1469:32)
+            at Module._load (node:internal/modules/cjs/loader:1286:12)
+            at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+            at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+            at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:152:5)
+            at node:internal/main/run_main_module:33:47
+
+        Node.js v24.1.0
+
+    - Arrow functions inherit the `this` context of the surrounding code
+
+    - `...`
+        - Spread
+            - When used to pull objects out of an array
+        - Rest
+            - When used to place objects into an array
+
+    - asynchronous code
+        - code that does not execute immediately
+        - node.js and JS do not block code from running while other code executes.
+        - promises are built-in js and node functions
