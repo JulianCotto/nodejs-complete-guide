@@ -1,0 +1,41 @@
+Express.js - Don't re-invert the wheel
+    - framework that can be installed as a 3rd party package.
+    - allows us to outsource some of the more tedious code that node.js requires.
+    - it is middleware.
+    - can be used for requests and responses.
+    - can be used for Routing.
+    - can be used to return entire HTML pages.
+
+What & Why?
+    - Server Side Logic is complex
+    - Just parsing a quest was a lot of code
+    - Express.js lets us focus on business code rather than the tedious details
+
+Express.js alternatives
+    - Vanilla Node.js
+    - Adonis.js (Laravel Inspired Framework)
+    - Koa
+    - Sails.js
+
+Express.js is all about middleware
+    - incoming requests are automatically funneled through a set of functions first
+    - allows for packages to be downloaded specifically for express.js
+    - app.use((req, res, next) => {});
+
+Express.js internals
+    - send() function
+        - Checks the function version first
+        - analyzes datatype
+            - string: contentType = HTML only if !contentType
+            - Other vals: toJSON
+        - can replace server setup
+            const server = http.createServer(app)
+            server.listen(3000);
+            - with app.listen(3000)
+
+Directory Naming Conventions
+    - Routes: Contains Express.js middleware
+    - Views: Contains HTML Front-end files
+    - Util: Custom tools for the project (BodyParser)
+    - Public: Static Content for Project (CSS)
+        - app.use(express.static(path.join(__dirname, 'public')));
