@@ -1,0 +1,25 @@
+Dynamic Content & Templates
+    - Up to Chapter 5, we have only been returning static content.
+    - We want to render more than just standard content.
+        - Manage Data (without a Database)
+        - Render Dynamic Content in our views
+        - Use of templating engines
+
+Templating Engine
+    - HTMLish Template
+    - Node/Express Content | Templating Engine
+    - Replaces Placeholders / Snippets with HTML content
+
+Available Templating Engines (limited list)
+    - EJS: npm install --save ejs
+        - Syntax: <p><%= name %></p>
+        - Normal HTML and plain JS in your templates
+    - PUG (Jade): npm install --save pug
+        - Syntax: p #{name}
+        - Minimal HTML and custom template language with limited a set of features
+    - Handlebars: npm install --save express-handlebars
+        - Syntax: <p>{{ name }}</p>
+        - Normal HTML and custom template engine with a limited set of features
+
+PUG (Jade)
+    - app.set('view engine', 'pug');
