@@ -1,0 +1,152 @@
+Understanding Node Package manager (NPM) Scripts
+    - NPM: Node Package Manager (pre-packaged)
+    - Can be used to initialize a node project and/or add extra features to one
+    - `npm init`: starts a new project or adds features to one
+        - generates `package.json`
+    - keyword start can be ran with `npm start`
+    - custom start must be ran with `npm run start-server`
+    {
+        "name": "chapter4",
+        "version": "1.0.0",
+        "description": "Chapter 4 Guide",
+        "main": "app.js",
+        "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "start": "node app.js",
+          "start-server": "node app.js"
+        },
+        "author": "Julian Cotto",
+        "license": "ISC"
+      }
+
+Installing Third Party Packages
+    - external packages available from NPM repository
+    - `npm install ${externalPackage}`
+        - `npm install nodemon`
+
+Using Nodemon for Auto Restarts
+    - Ensure installation to project or globally with `npm install nodemon -g`
+    - Change start script to use nodemon
+    {
+        "name": "chapter4",
+        "version": "1.0.0",
+        "description": "Chapter 4 Guide",
+        "main": "app.js",
+        "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "start": "node app.js",
+          "start-server": "node app.js"
+        },
+        "author": "Julian Cotto",
+        "license": "ISC"
+      }
+
+Understanding Different Error Types
+    - Syntax Errors
+        - cons server = http.createServer(routes)
+            - IDE highlights cons(and whitespace) as an error
+            - terminal error
+                cons server = http.createServer(routes)
+                     ^^^^^^
+
+                SyntaxError: Unexpected identifier 'server'
+                    at wrapSafe (node:internal/modules/cjs/loader:1666:18)
+                    at Module._compile (node:internal/modules/cjs/loader:1708:20)
+                    at Object..js (node:internal/modules/cjs/loader:1899:10)
+                    at Module.load (node:internal/modules/cjs/loader:1469:32)
+                    at Module._load (node:internal/modules/cjs/loader:1286:12)
+                    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+                    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+                    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:152:5)
+                    at node:internal/main/run_main_module:33:47
+
+                Node.js v24.1.0
+                [nodemon] app crashed - waiting for file changes before starting...
+        - the error is generalized to a single line of code but not to a concrete source
+            - not as easy to find (tedious)
+
+        - forgetting to close a curly brace produces the following error
+            module.exports = requestHandler;
+
+
+            SyntaxError: Unexpected end of input
+                at wrapSafe (node:internal/modules/cjs/loader:1666:18)
+                at Module._compile (node:internal/modules/cjs/loader:1708:20)
+                at Object..js (node:internal/modules/cjs/loader:1899:10)
+                at Module.load (node:internal/modules/cjs/loader:1469:32)
+                at Module._load (node:internal/modules/cjs/loader:1286:12)
+                at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+                at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+                at Module.require (node:internal/modules/cjs/loader:1491:12)
+                at require (node:internal/modules/helpers:135:16)
+                at Object.<anonymous> (C:\Users\P2159754\WebstormProjects\nodejs-complete-guide\src\Chapter4\app.js:3:16)
+
+            Node.js v24.1.0
+            [nodemon] app crashed - waiting for file changes before starting...
+    - Runtime Errors
+        - no returning res.end()
+            if (url === '/') {
+                res.write('<html lang="en">');
+                res.write('<head><title>Enter Message</title></head>');
+                res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form></body>');
+                res.write('</html>')
+                res.end();
+            }
+            node:_http_outgoing:642
+                throw new ERR_HTTP_HEADERS_SENT('set');
+                ^
+
+            Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+                at ServerResponse.setHeader (node:_http_outgoing:642:11)
+                at Server.requestHandler (C:\Users\P2159754\WebstormProjects\nodejs-complete-guide\src\Chapter4\routes.js:33:9)
+                at Server.emit (node:events:507:28)
+                at parserOnIncoming (node:_http_server:1155:12)
+                at HTTPParser.parserOnHeadersComplete (node:_http_common:117:17) {
+              code: 'ERR_HTTP_HEADERS_SENT'
+            }
+
+            Node.js v24.1.0
+
+        - indicates cannot set headers after the are sent to the client
+            - indicates that the requestHandler was the source and its in route.js
+            - troubleshooting: look at the code that proceeds the indicated error.
+
+
+
+    - Logical Errors
+        - using the wrong index to trigger a logical error
+            - const message = parsedBody.split('=')[0];
+            - does not cause a crash or trigger an error but message.txt doesn't receive the message
+        - use the node.js debugger for errors like these
+        - select codefile and run in debug mode
+            - set breakpoints around the problem area - const message = parsedBody.split('=')[0];
+
+             parsedBody = "message=dsfgdsfg"
+             message = undefined <- the issue is clearly visible here
+             body = Array(1) [Uint8Array(16)]
+             this = undefined
+             body = Array(1) [Uint8Array(16)]
+
+Using the Debugger
+    - In node terminal `parsedBody.split("=")
+        Array(2) ["message", "dsads"]`
+        - Shows that we are extracting the wrong value so we can easily fix the logical issue
+
+Restarting the Debugger Automatically After Editing Your App
+    - Debugger doesn't automatically restart with nodemon
+    - Set runtimeExecutable: nodemon
+    - Set console: integratedTerminal
+        - Ensures this doesn't fail with a not found error
+    - Debugger will continue to output messages but will also restart when changes are detected
+
+Changing Variables in the Debug Console
+    - variables can be directly manipulated in debugger
+        - affects runtime
+
+
+
+
+
+
+
+

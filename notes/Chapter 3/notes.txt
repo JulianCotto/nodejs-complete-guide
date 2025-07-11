@@ -1,0 +1,109 @@
+How the Web Works
+    - User/Client is using a Browser -> enters URL into browser
+    - Browser makes requests to DNS for IP address and then to server matching IP Address
+    - Our code responds to user requests -> run operations (database, etc...)
+    - Respond to the User with requested Data
+
+HTTP/HTTPS
+    - Hyper Text Transfer Protocol
+        - protocol for transferring data that is understood by the browser and server
+    - Hyper Text Transfer Protocol Secure
+        - HTTP + SSL encryption during transport
+
+Some Node Core Modules
+    - http: launch a server, send requests
+    - https: launch an SSL server, send requests
+    - fs: file system interactions
+    - path: file system mapping interactions
+    - os: operating system interactions
+
+Creating a Server in Node.js
+    - create `server.js` or `app.js` file (naming doesn't matter)
+        - import http `const http = require('http');`
+        - create server variable and arrow function
+            const server = http.createServer((req, res) => {
+                console.log(req);
+            })
+        - set the port for server to listen on
+            server.listen(3000);
+
+Node.js Program Lifecycle
+    - node app.js -> Start Script
+    - start script -> Parse Code
+    - { parse code -> Event Loop } == (The Node Application)
+        - event loop keeps running as long as there are event listeners registered
+    - process.exit() will end the listener
+    - node.js event loops are single threaded
+
+Understanding Requests
+    - headers
+        - metadata added to requests and responses
+    - Specifying Request Fields ( req.url, req.method, req.headers )
+        / GET {
+          host: 'localhost:3000',
+          connection: 'keep-alive',
+          'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-platform': '"Windows"',
+          'upgrade-insecure-requests': '1',
+          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+          accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+          'sec-fetch-site': 'none',
+          'sec-fetch-mode': 'navigate',
+          'sec-fetch-user': '?1',
+          'sec-fetch-dest': 'document',
+          'accept-encoding': 'gzip, deflate, br, zstd',
+          'accept-language': 'en-US,en;q=0.9',
+          cookie: 'Webstorm-294cfd3=37a9c8d7-b76c-4ee5-8a43-67d2bbddc366'
+        }
+
+    - Methods for modifying
+        - .setHeader(): Set Response Headers
+        - .write()
+
+Routing Requests
+    - A GET request is automatically sent by clicking a link
+    - A POST request must be created
+
+Streams & Buffers
+    - Example: Incoming Stream
+        - Stream -> bodyPart1 -> bodyPart2 ... -> Fully Parsed
+        - Larger files will take longer to fully parse
+        - The idea is to start working on the Data early
+        - Utilizing Buffers
+
+Order of Execution
+    - Will not necessarily execute in the order that it is written
+
+Threads
+    - Node.js only uses a single JS thread
+        - how is it able to execute multiple lines of code at once
+
+Single Thread, Event Loop & Blocking Code
+    - Incoming Request
+        - Our Code | Single JavaScript thread
+        - Event loop is automatically started by Node.js
+            - The event loop only handles callbacks with fast-finishing code
+        - Worker Pool is spun up to do heavy lifting
+            - detached from the code and can operate on multiple threads
+            - Once the worker is done, it will trigger the callback to put the process back in the event loop
+
+Event Loop
+    - Keeps Node.js processes running and handles callbacks.
+    - At the beginning of each execution it will check for TIMERS function callbacks.
+        - Executes setTimeout, setInterval callbacks.
+        - defers non-timer callbacks
+    - Node will then check PENDING CALLBACKS.
+        - Execute I/O related callbacks that were deferred.
+            - Disk & Network ops.
+            - Operations (~Blocking ops).
+    - Node then POLLS for new I/O events and executes their callbacks.
+    - Next Node CHECK for setImmediate functions and execute them after open callbacks are handled.
+    - Node then executes and CLOSE CALLBACKS
+    - Exit the whole Node.js program only if there are no registered callbacks
+        - refs == 0
+        - ref increments by 1 for every new callback that is registered
+            - decrements for every callback that finishes
+        - Because we create the server with callbacks, ref will never == 0
+
+
