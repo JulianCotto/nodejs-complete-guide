@@ -1,0 +1,4 @@
+Dynamic Routs and Advanced Models
+    - Passing Route Parameters
+    - Using Query Parameters
+    - Enhance Our Models

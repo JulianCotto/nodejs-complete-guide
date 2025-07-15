@@ -1,0 +1,11 @@
+Enhancing Apps
+    - Work on Navigation System
+        - be smart
+        - to where should I be able to go from where
+        - navigation.ejs
+    - Registering the routes
+    - Storing product data
+    - displaying product data
+    - editing and deleting products
+    - adding another item
+
