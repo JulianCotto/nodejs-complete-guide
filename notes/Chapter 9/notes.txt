@@ -1,4 +1,17 @@
-Dynamic Routs and Advanced Models
+Dynamic Routes and Advanced Models
     - Passing Route Parameters
     - Using Query Parameters
     - Enhance Our Models
+
+Dynamic Routing
+    - Add ":" to the express router path to make the route dynamic
+        - the value after ":" becomes req.params
+        - localhost:3000/:valParam
+    - Query params can be passed after a "?" and then chained with "&"
+        - localhost:3000/?param=value&b=2
+        - accessed with req.query."paramName"
+
+Models
+    - Models can hold only static methods (data-storage-friendly)
+    - Models can interact with each other (deleting cart items when the product is deleted)
+    - Working with files is suboptimal for larger datasets
