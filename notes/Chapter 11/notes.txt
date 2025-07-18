@@ -1,0 +1,9 @@
+Sequelize (requires MySQL2 package installation)
+    - Object Relational Mapping library
+    - Does the heavy lifting behind the scenes
+        - maps into JS objects so we never have to write SQL code on our own
+
+    - Core Concepts
+        - Offers us models to work with the DB
+        - Allows us to create and instantiate models with constructors and utility methods
+        - Allows us to associate our models

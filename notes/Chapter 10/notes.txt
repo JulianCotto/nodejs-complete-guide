@@ -1,0 +1,66 @@
+Topics
+    - Different Kinds of Databases (SQL vs. NoSQL)
+    - Using SQL in a Node.js App
+
+SQL vs. NoSQL
+    - Goal: Store Data and make it easily accessible
+        - Quicker than accessing a file
+        - Don't have to read a whole file for a specific piece of information
+    - SQL - Structured Query Language (MySQL)
+        - Data stored in tables with rows and columns
+        - Each row column combination is called a record
+        - Different tables can be related to one another
+        - Core Characteristics
+            - Strongly Defined Data Schema
+                - All Data in a table has to fit
+            - Data Relations - Tables are Connected
+                - One-to-One
+                - One-to-Many
+                - Many-to-Many
+        - Example: SELECT * FROM users WHERE age > 32;
+
+    - NoSQL (Mongo DB)
+        - Databases contain tables.
+        - Tables are called collections (table equivalent).
+        - No records in collections.
+            - Collections contain documents.
+        - NoSQL does not have a strict schema.
+        - There are no real relations in NoSQL.
+            - Data is duplicated to link tables together.
+            - If data changes, it must be updated in multiple places.
+        - Advantage is no need to join tables together.
+        - Characteristics.
+            - No Data Schema or Structure Needed.
+               - No Data Relations (Few/No Relations).
+               - Documents can be related, but doing so is unnecessary and makes queries slower.
+
+    - Horizontal vs. Vertical Scaling
+        - Horizontal Scaling
+            - Add More Servers (and merge data into one database)
+            - Not as easy to do but can be infinitely scaled
+        - Vertical Scaling
+            - Improve Server Capacity / Hardware
+            - Easier but not infinitely scalable
+
+        - SQL (Where relations are important and data isn't accessed multiple times per second)
+            - Data uses Schemas
+            - Relations
+            - Data is distributed across multiple tables
+            - Horizontal Scaling is challenging/impossible
+            - Vertical Scaling is possible
+            - Limitations for lots of (thousands) read and write queries per second
+
+        - NoSQL (Relations aren't as important and data is accessed and manipulated often)
+            - Schema-less
+            - No (or very few) relations
+            - Data is typically merged/nested in a few collections
+            - Both horizontal and vertical scaling are possible
+            - Great performance for mass read and write requests
+
+Install MySQL Package
+    - npm install --save mysql2
+
+Using MySQL
+    - Create connection pool to avoid excessive connects and disconnects
+
+
